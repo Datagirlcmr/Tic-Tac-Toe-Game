@@ -89,4 +89,4 @@ Rubocop:
 [issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
 [issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
 [license-shield]: https://img.shields.io/github/license/Datagirlcmr/Object-Oriented-Programming
-[license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/master/LICENSE.txt
+[license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/develop/LICENSE
