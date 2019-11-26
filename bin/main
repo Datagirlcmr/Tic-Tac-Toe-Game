@@ -2,11 +2,25 @@
 
 class Game
     def initialize
+        @player1 =Player.new(1)
+        #@player2 =Player.new(2)
+    end
+
+    def Display
+    end
+
+    def Play
+    end
+
+    def Win
+    end
+
+    def Loose
     end
 end
 
 class Player
-    @@numbers=0
+    @@numbers = 0
     def initialize(number, symbol=nil, name=nil)
         @number = number
         puts "Hello new Player. What's your Name?"
@@ -40,5 +54,5 @@ class Player
 
 end
 
-amadou =Player.new(1)
-selma =Player.new(1)
+
+game = Game.new()
