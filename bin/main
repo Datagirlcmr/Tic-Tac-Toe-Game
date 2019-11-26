@@ -1,3 +1,44 @@
 #!/usr/bin/env ruby
 
-puts 'Hello World!'
+class Game
+    def initialize
+    end
+end
+
+class Player
+    @@numbers=0
+    def initialize(number, symbol=nil, name=nil)
+        @number = number
+        puts "Hello new Player. What's your Name?"
+        @name = gets.chomp
+
+        if @symbol.nil?
+            puts "Hello #{@name}. Which Symbol will you play? X or O?"
+            @symbol = gets.chomp.upcase
+            symb_error = true
+
+            while symb_error
+
+                case @symbol
+                when "X"
+                    puts "#{@name}, You will play with  #{@symbol}"
+                    symb_error = false
+                when "O"
+                    puts "#{@name}, You will play with #{@symbol}"
+                    symb_error = false
+                else
+                    puts "Your symbol is not valid! Please try again!"
+                    puts "Which Symbol will you play? X or O?"
+                    @symbol = gets.chomp.upcase
+                end
+            end
+
+        end
+
+         
+    end
+
+end
+
+amadou =Player.new(1)
+selma =Player.new(1)
