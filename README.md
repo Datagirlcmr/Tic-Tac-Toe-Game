@@ -30,7 +30,7 @@ Rebuilding the TIC TAC Toe Game
   <p align="center">
     Tic Tac Toe : What we did
     <br />
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/tree/features"><strong>Explore the docs �</strong></a>
+    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/tree/milestone_1"><strong>Explore the docs �</strong></a>
     <br />
     <br />
     <a href="https://www.theodinproject.com/courses/ruby-programming/lessons/oop">Project Assigment</a>
@@ -88,5 +88,5 @@ Rubocop:
 [stars-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
 [issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
-[license-shield]: https://img.shields.io/github/license/Datagirlcmr/Enumerable-Methods
+[license-shield]: https://img.shields.io/github/license/Datagirlcmr/Object-Oriented-Programming
 [license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/master/LICENSE.txt
