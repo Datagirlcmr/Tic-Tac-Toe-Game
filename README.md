@@ -1,5 +1,5 @@
-# Project-Enumerable-Methods
-Rebuilding some Ruby enumerable methods
+# Object Oriented Programming 
+Rebuilding the TIC TAC Toe Game
 
 
 <!-- PROJECT SHIELDS -->
@@ -25,45 +25,32 @@ Rebuilding some Ruby enumerable methods
     <img src="doc/microverse.png" alt="Logo" width="80" height="80">
   </a>
 
-  <h3 align="center"> Ruby Enumerables Implementation</h3>
+  <h3 align="center"> Tic Tac Toe Implementation</h3>
 
   <p align="center">
-    Ruby enumerables customized version
+    Tic Tac Toe : What we did
     <br />
-    <a href="https://github.com/Datagirlcmr/Enumerable-Methods/tree/features"><strong>Explore the docs �</strong></a>
+    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/tree/features"><strong>Explore the docs �</strong></a>
     <br />
     <br />
-    <a href="https://www.theodinproject.com/courses/ruby-programming/lessons/advanced-building-blocks#assignment-2">Project Assigment</a>
+    <a href="https://www.theodinproject.com/courses/ruby-programming/lessons/oop">Project Assigment</a>
     �
-    <a href="https://github.com/Datagirlcmr/Enumerable-Methods/issues">Report Bug</a>
+    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues">Report Bug</a>
     �
-    <a href="https://github.com/Datagirlcmr/Enumerable-Methods/issues"> Feature Request</a>
+    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues"> Feature Request</a>
   </p>
 </p>
 
-# Project-Enumerable-Methods
-Implement a version of Ruby’s enumerable methods.
+# Project-TIC TAC TOE
+Rebuild the TIC TAC TOE Game
 
 # Validations
 
 Rubocop: 
 
-![rubocop-validation](images/rubo.png)
-
 # Features
 
-* Creating enumerables methods accepting a block using yield() and #call
-* `module` keyword
-* Enumerable methods rebuilt
-    + [x] [`all?`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-all-3F)
-    + [x] [`any?`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-none-3F)
-    + [x] [`count`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-none-3F)
-    + [x] [`each_with_index`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-each_with_index)
-    + [x] [`each`]()
-    + [x] [`inject`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-inject)
-    + [x] [`map`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-map)
-    + [x] [`none?`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-none-3F)
-    + [x] [`select`](https://ruby-doc.org/core-2.6.3/Enumerable.html#method-i-none-3F)
+* Milestone 1 : Setting up and making main.rb executable
 
 # Built With
 
@@ -72,9 +59,11 @@ Rubocop:
 * `vscode` with _Ruby_ and _Rubocop_ extensions
 * Linux
 
-# Author
+# Authors
 
 * [Selma Ndi](https://github.com/Datagirlcmr)
+* [Amadou Ibrahim](https://github.com/genzaraki)
+
 
 <!--# License
 
@@ -92,12 +81,12 @@ Rubocop:
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 [contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/Datagirlcmr/Enumerable-Methods/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Datagirlcmr/Enumerable-Methods
-[forks-url]: https://github.com/Datagirlcmr/Enumerable-Methods/network/members
-[stars-shield]: https://img.shields.io/github/stars/Datagirlcmr/Enumerable-Methods
-[stars-url]: https://github.com/Datagirlcmr/Enumerable-Methods/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Enumerable-Methods
-[issues-url]: https://github.com/Datagirlcmr/Enumerable-Methods/issues
+[contributors-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Datagirlcmr/Object-Oriented-Programming
+[forks-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/network/members
+[stars-shield]: https://img.shields.io/github/stars/Datagirlcmr/Object-Oriented-Programming
+[stars-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
+[issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
 [license-shield]: https://img.shields.io/github/license/Datagirlcmr/Enumerable-Methods
-[license-url]: https://github.com/Datagirlcmr/Enumerable-Methods/blob/master/LICENSE.txt
+[license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/master/LICENSE.txt
