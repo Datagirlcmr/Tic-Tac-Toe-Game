@@ -1,12 +1,56 @@
 #!/usr/bin/env ruby
 
+=begin
+    intro
+    get player names, symbol, number
+    game start
+    board display
+    player turn
+    player win/ loose/ draw
+    game end
+
+    play again prompt
+    
+=end
+
 class Game
     def initialize
         @player1 =Player.new(1)
-        #@player2 =Player.new(2)
+        @player2 =Player.new(2)
     end
 
-    def Display
+    def introduction
+        puts "Welcome to TIC TAC Toe"
+        puts "Tic-tac-toe is a game for two players, X and O, who take turns marking 
+        the spaces in a 3×3 grid. The player who succeeds in placing 
+        three of their marks in a horizontal, vertical, or diagonal row is the winner."
+    end
+
+    def game_start
+        if @player1
+            puts "Place your symbol on any position on the board"
+        else
+            puts "Wait your turn"
+        end  
+    end
+
+    def board
+        puts ""
+        puts "Sample board containing numbered positions. "
+        puts "| 1 || 2 || 3 |"
+        puts "----+----+-----+"
+        puts "| 4 || 5 || 6 |"
+        puts "----+----+-----+"
+        puts "| 7 || 8 || 9 |"
+
+        puts " "
+
+        squares = {
+            1 => 1, 2 => 2, 3 => 3
+            4 => 4, 5 => 5, 6 => 6
+            7 => 7, 8 => 8, 9 => 9
+        }
+
     end
 
     def Play
@@ -20,39 +64,21 @@ class Game
 end
 
 class Player
-    @@numbers = 0
-    def initialize(number, symbol=nil, name=nil)
+    def initialize(number, name=nil)
         @number = number
         puts "Hello new Player. What's your Name?"
         @name = gets.chomp
 
-        if @symbol.nil?
-            puts "Hello #{@name}. Which Symbol will you play? X or O?"
-            @symbol = gets.chomp.upcase
-            symb_error = true
-
-            while symb_error
-
-                case @symbol
-                when "X"
-                    puts "#{@name}, You will play with  #{@symbol}"
-                    symb_error = false
-                when "O"
-                    puts "#{@name}, You will play with #{@symbol}"
-                    symb_error = false
-                else
-                    puts "Your symbol is not valid! Please try again!"
-                    puts "Which Symbol will you play? X or O?"
-                    @symbol = gets.chomp.upcase
-                end
-            end
-
+        if number == 1
+            puts "Your symbol is X"
+        else
+            puts "Your symbol is O"
         end
-
-         
     end
-
 end
 
 
 game = Game.new()
+
+
+
