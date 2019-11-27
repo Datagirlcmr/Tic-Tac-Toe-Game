@@ -38,7 +38,7 @@ class Game
         @playing=true
         @player=nil
         @board = Board.new
-        play(@player1)
+        play
     end
 
     def introduction
@@ -48,40 +48,32 @@ class Game
         three of their marks in a horizontal, vertical, or diagonal row is the winner."
     end
 
-    def play(player)
+    def play
         puts "Game start"
-        
+        player = @player1
         while @playing
             @board.display      
             puts " #{player.name} It is your turn to play"
-            puts "Select a move from the available moves:  1,2,3,4,5,6,7,8,9" 
-            num = gets.chomp.to_i
-            # if num >=1 && num <=9
-            #     if !available
-            #         puts "Your move is not available" 
-            #     elsif winning 
-            #         puts "You Win"
-            #     else
-            #         puts "Its a draw"
-            #     end
-            # end
-
-            num = num- 1
-            if @board.is_available?(num)
-             @board.moves[num] = player.symbol
-            else
-                puts "Your move is not available"  
+            moves_error = true
+            while moves_error
+                puts "Select a move from the available moves: "
+                puts @board.availables 
+                num = gets.chomp.to_i
+                num = num- 1
+                if @board.is_available?(num)
+                    moves_error = false
+                @board.moves[num] = player.symbol
+                else
+                    puts "Your move is not available"  
+                end
             end
-        end
-        
+            if player.number == @player1.number
+                player = @player2
+            else
+                player = @player1
+            end
+        end   
     end
-
-    def player_turn
-
-    end
-    
-   
-
 
     def Win
     end
@@ -120,8 +112,12 @@ class Board
         false
     end
 
-    def available
-        @moves.select {|x| x.nil?}
+    def availables
+       r = ""
+       for i in 0...@moves.size
+        r += "#{i+1} - " if @moves[i].nil?
+       end
+        r
     end
 
     def display
@@ -164,5 +160,6 @@ end
 
 game = Game.new
 
-
+# check = Board.new
+# p check.availables
 
