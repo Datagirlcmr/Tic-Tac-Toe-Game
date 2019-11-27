@@ -55,12 +55,23 @@ class Game
         
         while @playing
             board      
-            puts " #{player.name} Place your symbol on the board"
+            puts " #{player.name} It is your turn to play"
+            puts "Select a move from the available moves:  1,2,3,4,5,6,7,8,9" 
             num = gets.chomp.to_i
-            num = num.to_i
+            if num in !(1..9) 
+                if !available
+                    puts "Your move is not available" 
+                elsif winning 
+                    puts "You Win"
+                else
+                    puts "Its a draw"
+                end
+            end
+
             num = num- 1
-            @boardPlayer[num]=player.symbol
+            @boardPlayer[num] = player.symbol
         end
+        
     end
 
     def player_turn
