@@ -67,6 +67,14 @@ class Game
                     puts "Your move is not available"  
                 end
             end
+            
+            if is_a_win? 
+                puts "Hourra #{player.name}. You Win!"
+                @playing = false
+                return
+            end
+
+
             if player.number == @player1.number
                 player = @player2
             else
@@ -75,7 +83,25 @@ class Game
         end   
     end
 
-    def Win
+    def is_a_win?
+        wins =[];
+        wins << row1 = @board.moves[0].to_s + @board.moves[1].to_s + @board.moves[2].to_s # X+X+X => XXX // OOO
+        wins << row2 = @board.moves[3].to_s + @board.moves[4].to_s + @board.moves[5].to_s
+        wins << row3 = @board.moves[6].to_s + @board.moves[7].to_s + @board.moves[8].to_s
+        wins << col1 = @board.moves[0].to_s + @board.moves[3].to_s + @board.moves[6].to_s
+        wins << col2 = @board.moves[1].to_s + @board.moves[4].to_s + @board.moves[7].to_s
+        wins << col3 = @board.moves[2].to_s + @board.moves[5].to_s + @board.moves[8].to_s
+        wins << diag1 = @board.moves[0].to_s + @board.moves[4].to_s + @board.moves[8].to_s
+        wins << diag2 = @board.moves[2].to_s + @board.moves[4].to_s + @board.moves[6].to_s
+        
+        player1_win = "XXX"
+        player2_win = "OOO"
+        wins.each do |x|
+            if x== player1_win || x== player2_win
+                return true
+            end
+        end
+        return false
     end
 
     def Loose
