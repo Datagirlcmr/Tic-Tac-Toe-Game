@@ -37,9 +37,7 @@ class Game
         @player2 =Player.new(2)
         @playing=true
         @player=nil
-        #@board = { 1 => 1, 2 => 2, 3 => 3,4 => 4, 5 => 5, 6 => 6,7 => 7, 8 => 8, 9 => 9}
-        @board = [1,2,3,4,5,6,7,8,9]
-        @boardPlayer = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
+        @board = Board.new
         play(@player1)
     end
 
@@ -54,22 +52,26 @@ class Game
         puts "Game start"
         
         while @playing
-            board      
+            @board.display      
             puts " #{player.name} It is your turn to play"
             puts "Select a move from the available moves:  1,2,3,4,5,6,7,8,9" 
             num = gets.chomp.to_i
-            if num >=1 && num <=9
-                if !available
-                    puts "Your move is not available" 
-                elsif winning 
-                    puts "You Win"
-                else
-                    puts "Its a draw"
-                end
-            end
+            # if num >=1 && num <=9
+            #     if !available
+            #         puts "Your move is not available" 
+            #     elsif winning 
+            #         puts "You Win"
+            #     else
+            #         puts "Its a draw"
+            #     end
+            # end
 
             num = num- 1
-            @boardPlayer[num] = player.symbol
+            if @board.is_available?(num)
+             @board.moves[num] = player.symbol
+            else
+                puts "Your move is not available"  
+            end
         end
         
     end
@@ -78,42 +80,7 @@ class Game
 
     end
     
-    def board
-        lineblock= "================="
-        linebreak = "----+----+-----+"
-        line1=""
-        line2=""
-        line3=""
-        (0..2).each do |x| 
-            if @boardPlayer[x].nil?
-                line1+="| #{x+1} |"
-            else
-                line1+="| #{@boardPlayer[x]} |"
-            end
-        end
-        (3..5).each do |x|
-            if @boardPlayer[x].nil?
-                line2+="| #{x+1} |"
-            else
-                line2+="| #{@boardPlayer[x]} |"
-            end
-        end
-        (6..8).each do |x|
-            if @boardPlayer[x].nil?
-                line3+="| #{x+1} |"
-            else
-                line3+="| #{@boardPlayer[x]} |"
-            end
-        end
-        puts lineblock
-        puts line1
-        puts linebreak
-        puts line2
-        puts linebreak
-        puts line3
-        puts lineblock
-        
-    end
+   
 
 
     def Win
@@ -141,8 +108,61 @@ class Player
     end
 end
 
+class Board
+    attr_accessor :moves
+    def initialize
+        @moves = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
+    end
 
-game = Game.new()
+    def is_available?(index)
+        p @moves[index]
+        return true if @moves[index].nil?
+        false
+    end
+
+    def available
+        @moves.select {|x| x.nil?}
+    end
+
+    def display
+        lineblock= "================="
+        linebreak = "----+----+-----+"
+        line1=""
+        line2=""
+        line3=""
+        (0..2).each do |x| 
+            if @moves[x].nil?
+                line1+="| #{x+1} |"
+            else
+                line1+="| #{@moves[x]} |"
+            end
+        end
+        (3..5).each do |x|
+            if @moves[x].nil?
+                line2+="| #{x+1} |"
+            else
+                line2+="| #{@moves[x]} |"
+            end
+        end
+        (6..8).each do |x|
+            if @moves[x].nil?
+                line3+="| #{x+1} |"
+            else
+                line3+="| #{@moves[x]} |"
+            end
+        end
+        puts lineblock
+        puts line1
+        puts linebreak
+        puts line2
+        puts linebreak
+        puts line3
+        puts lineblock
+        
+    end
+end
+
+game = Game.new
 
 
 
