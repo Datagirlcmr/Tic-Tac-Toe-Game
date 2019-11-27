@@ -1,15 +1,32 @@
 #!/usr/bin/env ruby
 
 =begin
-    intro
-    get player names, symbol, number
-    game start
-    board display
-    player turn
-    player win/ loose/ draw
-    game end
+    Start the game
+puts introduction
+puts description
+player enter their name
+player1 choose its symbol
+the symbol is set
+It's the player1 turn
+Loop {
+    display the board
 
-    play again prompt
+    The player1 enter the position of the case on the board
+    If the player win then the game end or it's dram
+    else
+
+    display the board
+
+    The player 2 enter the position of the case on the board
+    If the player win then the game endor it's dram
+    else
+}
+
+if game end,
+    if player #{player} win, puts player wins
+    if player #{player} loose, puts player loose
+    If draw, puts the game is a draw
+    Replay?
     
 =end
 
