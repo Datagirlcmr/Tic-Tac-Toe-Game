@@ -58,7 +58,7 @@ class Game
             puts " #{player.name} It is your turn to play"
             puts "Select a move from the available moves:  1,2,3,4,5,6,7,8,9" 
             num = gets.chomp.to_i
-            if num in !(1..9) 
+            if num >=1 && num <=9
                 if !available
                     puts "Your move is not available" 
                 elsif winning 
