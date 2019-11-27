@@ -15,8 +15,15 @@
 
 class Game
     def initialize
+        introduction
         @player1 =Player.new(1)
         @player2 =Player.new(2)
+        @playing=true
+        @player=nil
+        #@board = { 1 => 1, 2 => 2, 3 => 3,4 => 4, 5 => 5, 6 => 6,7 => 7, 8 => 8, 9 => 9}
+        @board = [1,2,3,4,5,6,7,8,9]
+        @boardPlayer = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
+        play(@player1)
     end
 
     def introduction
@@ -26,35 +33,60 @@ class Game
         three of their marks in a horizontal, vertical, or diagonal row is the winner."
     end
 
-    def game_start
-        if @player1
-            puts "Place your symbol on any position on the board"
-        else
-            puts "Wait your turn"
-        end  
+    def play(player)
+        puts "Game start"
+        
+        while @playing
+            board      
+            puts " #{player.name} Place your symbol on the board"
+            num = gets.chomp.to_i
+            num = num.to_i
+            num = num- 1
+            @boardPlayer[num]=player.symbol
+        end
     end
 
+    def player_turn
+
+    end
+    
     def board
-        puts ""
-        puts "Sample board containing numbered positions. "
-        puts "| 1 || 2 || 3 |"
-        puts "----+----+-----+"
-        puts "| 4 || 5 || 6 |"
-        puts "----+----+-----+"
-        puts "| 7 || 8 || 9 |"
-
-        puts " "
-
-        squares = {
-            1 => 1, 2 => 2, 3 => 3
-            4 => 4, 5 => 5, 6 => 6
-            7 => 7, 8 => 8, 9 => 9
-        }
-
+        lineblock= "================="
+        linebreak = "----+----+-----+"
+        line1=""
+        line2=""
+        line3=""
+        (0..2).each do |x| 
+            if @boardPlayer[x].nil?
+                line1+="| #{x+1} |"
+            else
+                line1+="| #{@boardPlayer[x]} |"
+            end
+        end
+        (3..5).each do |x|
+            if @boardPlayer[x].nil?
+                line2+="| #{x+1} |"
+            else
+                line2+="| #{@boardPlayer[x]} |"
+            end
+        end
+        (6..8).each do |x|
+            if @boardPlayer[x].nil?
+                line3+="| #{x+1} |"
+            else
+                line3+="| #{@boardPlayer[x]} |"
+            end
+        end
+        puts lineblock
+        puts line1
+        puts linebreak
+        puts line2
+        puts linebreak
+        puts line3
+        puts lineblock
+        
     end
 
-    def Play
-    end
 
     def Win
     end
@@ -64,14 +96,18 @@ class Game
 end
 
 class Player
+    attr_reader :number, :name,:symbol
+
     def initialize(number, name=nil)
         @number = number
         puts "Hello new Player. What's your Name?"
         @name = gets.chomp
 
         if number == 1
+            @symbol = "X"
             puts "Your symbol is X"
         else
+            @symbol = "O"
             puts "Your symbol is O"
         end
     end
