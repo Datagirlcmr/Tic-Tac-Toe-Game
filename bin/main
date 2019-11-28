@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require "./lib/player.rb"
-require "./lib/board.rb"
+require_relative  "./../lib/player.rb"
+require_relative  "./../lib/board.rb"
 
 class Game
     def initialize(player1, player2)
@@ -164,7 +164,7 @@ def tic_tac_toe
     puts "Welcome #{player2_name} Your symbol is #{player2_symbol} \n"
 
     player1 = Player.new(1, player1_name,player1_symbol)
-    player2 = Player.new(1, player2_name,player2_symbol)
+    player2 = Player.new(2, player2_name,player2_symbol)
     game = Game.new(player1,player2)
     game.play
 end
