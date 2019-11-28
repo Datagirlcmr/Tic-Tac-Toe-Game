@@ -3,11 +3,15 @@
 class Board
   attr_accessor :moves
   def initialize
-    @moves = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
+    @moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
+    @starsline = '************************'
+  end
+  def reset 
+    @moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
 
   def available?(index)
-    return true if @moves[index].nil?
+    return true if @moves[index].is_a?(Integer)
 
     false
   end
@@ -15,13 +19,16 @@ class Board
   def availables
     r = ''
     (0...@moves.size).each do |i|
-      r += "#{i + 1} - " if @moves[i].nil?
+      r += "#{i + 1} - " if @moves[i].is_a?(Integer)
     end
     r
   end
 
-  def free_moves
-    return true if @moves.select(&:nil?)
+  def is_full?
+    
+    if @moves.none?(Integer)
+        return true
+    end    
     false
   end
 
@@ -32,25 +39,14 @@ class Board
     line2 = ''
     line3 = ''
     (0..2).each do |x|
-      line1 += if @moves[x].nil?
-                 "| #{x + 1} |"
-               else
-                 "| #{@moves[x]} |"
-               end
+      line1 +=  "| #{@moves[x]} |"
+             
     end
     (3..5).each do |x|
-      line2 += if @moves[x].nil?
-                 "| #{x + 1} |"
-               else
-                 "| #{@moves[x]} |"
-               end
+      line2 += "| #{@moves[x]} |"
     end
     (6..8).each do |x|
-      line3 += if @moves[x].nil?
-                 "| #{x + 1} |"
-               else
-                 "| #{@moves[x]} |"
-               end
+      line3 += "| #{@moves[x]} |"
     end
     display = ''
     display += "\n"
@@ -65,13 +61,31 @@ class Board
     display
   end
 
-  def win_display(player)
-    display = ''
-    starsline = '************************'
+  def start_display(player1,player2)
+    display = ''    
     display += "\n"
-    display += starsline * 2 + "\n"
-    display += "****  HURRAY #{player.name.upcase}. YOU ARE THE WINNER!  ****" + "\n"
-    display += starsline * 2 + "\n"
+    display += @starsline + "\n"
+    display += "*** #{player1.name} #{player1.wins} VS #{player2.name} #{player2.wins} ***" + "\n"
+    display += @starsline + "\n"
+    display += "\n"
+  end
+  
+  def win_display(winner,player1,player2)
+    display = ''
+    display += "\n"
+    display += @starsline * 2 + "\n"
+    display += "****  HURRAY #{winner.name.upcase}. YOU ARE THE WINNER!  ****" + "\n"
+    display += @starsline * 2 + "\n"
+    display += "\n"
+  end
+
+  def draw_display
+    display = ''
+    
+    display += "\n"
+    display += @starsline * 2 + "\n"
+    display += "****  IT'S A DRAW! ****" + "\n"
+    display += @starsline * 2 + "\n"
     display += "\n"
   end
 end

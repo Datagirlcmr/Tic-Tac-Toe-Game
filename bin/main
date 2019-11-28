@@ -13,21 +13,24 @@ class Game
     end
 
     def play
-        puts "Game start"
-        player = @player1
+        puts @board.start_display(@player1, @player2)
+        @player = @player1
         while @playing
             puts @board.display      
-            puts "#{player.name} It is your turn to play"
+            puts "#{@player.name} It is your turn to play"
+            puts
             moves_error = true
             while moves_error
                 puts "Select a move from the available moves: "
+                
                 puts @board.availables 
                 num = gets.chomp.to_i
                 num = num- 1
                 if num >= 0 && num <= 8
                     if @board.available?(num)
                         moves_error = false
-                        @board.moves[num] = player.symbol
+                        @board.moves[num] = @player.symbol
+                        puts "#{@player.name} has played the move at #{num+1}"
                     else
                         errors("invalid_num")
                     end
@@ -35,34 +38,57 @@ class Game
                     errors("invalid_num")
                 end
             end
-             game_end(player)
-             player= turn(player)   
+            if is_a_win?
+                @player.wins += 1
+                puts @board.display
+                puts @board.win_display(@player,@player1,@player2) 
+                @playing = false
+                
+            end
+            
+            game_end
+            turn   
         end   
     end
 
-    def turn(player)
-        if player.number == @player1.number
-            player = @player2
+    def turn
+        if @player.number == @player1.number
+            @player = @player2
         else
-            player = @player1
+            @player = @player1
         end
-        player
+        
     end
 
-    def game_end(player)
-        finish = false
-        if is_a_win?
-            puts @board.display
-            puts @board.win_display(player) 
+    def game_end
+        board_full = @board.is_full?   
+            
+        if @playing && board_full
             @playing = false
-            return
-        elsif !@board.free_moves
-            @playing = false
-        else
-            puts "Its A Draw....."
-            puts ""
-            puts "Game has Ended"
-            finish = true
+            @board.display
+            puts @board.draw_display        
+            
+        end
+        
+        play_again
+
+    end
+
+    def play_again
+        if !@playing
+            puts "Play Again? Y for Yes or N for No?"
+            answ = gets.chomp.downcase
+            if answ.to_s =="y"
+                @board.reset
+                @playing=true
+                puts "Great! Let's Play Again"
+                play
+            elsif answ.to_s=="n"
+                puts "Thank you for playing! See you next time!"
+            else
+                puts "Please type Y or N"
+                false
+            end
         end
     end
 
@@ -81,15 +107,16 @@ class Game
         player2_win = "OOO"
         wins.each do |x|
             if x== player1_win || x== player2_win
-                return true
+               return true
             end
+            
         end
         return false
     end
 
     def errors(code)
         errors = {
-            invalid_num: "Sorry. Your move is not available. Please try again"
+            invalid_num: "Sorry. Your move is not available. Please try again \n"
         }
 
         if errors[code.to_sym]
@@ -102,22 +129,29 @@ end
 
 
 
+def play_game
+    puts "Welcome to TIC TAC Toe"
+    puts "Tic-tac-toe is a game for two players, X and O, who take turns marking 
+    the spaces in a 3×3 grid. The player who succeeds in placing 
+    three of their marks in a horizontal, vertical, or diagonal row is the winner. \n"
+    puts
+    puts "Hello Player 1. What's your Name?"
+    player1_name = gets.chomp
+    puts
+    puts "Welcome #{player1_name} Your symbol is X"
+    puts
+    puts "Hello Player 2. What's your Name?"
+    player2_name = gets.chomp
+    puts "Welcome #{player2_name} Your symbol is O \n"
+    game = Game.new(player1_name,player2_name)
+    game.play
+end
 
-puts "Welcome to TIC TAC Toe"
-puts "Tic-tac-toe is a game for two players, X and O, who take turns marking 
-the spaces in a 3×3 grid. The player who succeeds in placing 
-three of their marks in a horizontal, vertical, or diagonal row is the winner."
+def tests
+    
+    check = Board.new
+    p check.free_moves?
+end
 
-puts "Hello Player 1. What's your Name?"
-player1_name = gets.chomp
-puts "Welcome #{player1_name} Your symbol is X"
-
-puts "Hello Player 2. What's your Name?"
-player2_name = gets.chomp
-puts "Welcome #{player2_name} Your symbol is O"
-
-game = Game.new(player1_name,player2_name)
-game.play
-# check = Board.new
-# p check.free_moves
-
+play_game
+#tests
