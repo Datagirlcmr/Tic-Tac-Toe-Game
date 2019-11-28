@@ -6,7 +6,8 @@ class Board
     @moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
     @starsline = '************************'
   end
-  def reset 
+
+  def reset
     @moves = [1, 2, 3, 4, 5, 6, 7, 8, 9]
   end
 
@@ -24,11 +25,9 @@ class Board
     r
   end
 
-  def is_full?
-    
-    if @moves.none?(Integer)
-        return true
-    end    
+  def full?
+    return true if @moves.none?(Integer)
+
     false
   end
 
@@ -39,8 +38,7 @@ class Board
     line2 = ''
     line3 = ''
     (0..2).each do |x|
-      line1 +=  "| #{@moves[x]} |"
-             
+      line1 += "| #{@moves[x]} |"
     end
     (3..5).each do |x|
       line2 += "| #{@moves[x]} |"
@@ -61,31 +59,38 @@ class Board
     display
   end
 
-  def start_display(player1,player2)
-    display = ''    
-    display += "\n"
-    display += @starsline + "\n"
-    display += "*** #{player1.name} #{player1.wins} VS #{player2.name} #{player2.wins} ***" + "\n"
-    display += @starsline + "\n"
-    display += "\n"
-  end
-  
-  def win_display(winner,player1,player2)
+  def start_display(player1, player2)
     display = ''
     display += "\n"
-    display += @starsline * 2 + "\n"
-    display += "****  HURRAY #{winner.name.upcase}. YOU ARE THE WINNER!  ****" + "\n"
-    display += @starsline * 2 + "\n"
+    display += @starsline
     display += "\n"
+    display += "*** #{player1.name} #{player1.wins} VS #{player2.name} #{player2.wins} ***"
+    display += "\n"
+    display += @starsline
+    display + "\n"
+  end
+
+  def win_display(winner, _player1, _player2)
+    display = ''
+    display += "\n"
+    display += @starsline * 2
+    display += "\n"
+    display += "****  HURRAY #{winner.name.upcase}. YOU ARE THE WINNER!  ****"
+    display += "\n"
+    display += @starsline * 2
+    display + "\n"
   end
 
   def draw_display
     display = ''
-    
+
     display += "\n"
-    display += @starsline * 2 + "\n"
-    display += "****  IT'S A DRAW! ****" + "\n"
-    display += @starsline * 2 + "\n"
+    display += @starsline * 2
     display += "\n"
+    display += "****  IT'S A DRAW! ****"
+    display += "\n"
+    display += @starsline * 2
+    display += "\n"
+    display + "\n"
   end
 end
