@@ -1,148 +1,174 @@
 #!/usr/bin/env ruby
-
-=begin
-    Start the game
-puts introduction
-puts description
-player enter their name
-player1 choose its symbol
-the symbol is set
-It's the player1 turn
-Loop {
-    display the board
-
-    The player1 enter the position of the case on the board
-    If the player win then the game end or it's dram
-    else
-
-    display the board
-
-    The player 2 enter the position of the case on the board
-    If the player win then the game endor it's dram
-    else
-}
-
-if game end,
-    if player #{player} win, puts player wins
-    if player #{player} loose, puts player loose
-    If draw, puts the game is a draw
-    Replay?
-    
-=end
+require_relative  "./../lib/player.rb"
+require_relative  "./../lib/board.rb"
 
 class Game
-    def initialize
-        introduction
-        @player1 =Player.new(1)
-        @player2 =Player.new(2)
-        @playing=true
-        @player=nil
-        #@board = { 1 => 1, 2 => 2, 3 => 3,4 => 4, 5 => 5, 6 => 6,7 => 7, 8 => 8, 9 => 9}
-        @board = [1,2,3,4,5,6,7,8,9]
-        @boardPlayer = [nil,nil,nil,nil,nil,nil,nil,nil,nil]
-        play(@player1)
+    def initialize(player1, player2)
+      @player1 = player1
+      @player2 = player2
+      @playing = true
+      @player = nil
+      @board = Board.new
     end
-
-    def introduction
-        puts "Welcome to TIC TAC Toe"
-        puts "Tic-tac-toe is a game for two players, X and O, who take turns marking 
-        the spaces in a 3×3 grid. The player who succeeds in placing 
-        three of their marks in a horizontal, vertical, or diagonal row is the winner."
-    end
-
-    def play(player)
-        puts "Game start"
-        
-        while @playing
-            board      
-            puts " #{player.name} It is your turn to play"
-            puts "Select a move from the available moves:  1,2,3,4,5,6,7,8,9" 
-            num = gets.chomp.to_i
-            if num >=1 && num <=9
-                if !available
-                    puts "Your move is not available" 
-                elsif winning 
-                    puts "You Win"
-                else
-                    puts "Its a draw"
-                end
-            end
-
-            num = num- 1
-            @boardPlayer[num] = player.symbol
+  
+    def play
+      puts @board.start_display(@player1, @player2)
+      @player = @player1
+      while @playing
+        puts @board.display
+        puts "#{@player.name} It is your turn to play"
+        puts
+  
+        player_move
+  
+        if a_win?
+          @player.wins += 1
+          puts @board.display
+          puts @board.win_display(@player, @player1, @player2)
+          @playing = false
+  
         end
-        
+  
+        game_end
+        turn
+      end
     end
-
-    def player_turn
-
-    end
-    
-    def board
-        lineblock= "================="
-        linebreak = "----+----+-----+"
-        line1=""
-        line2=""
-        line3=""
-        (0..2).each do |x| 
-            if @boardPlayer[x].nil?
-                line1+="| #{x+1} |"
-            else
-                line1+="| #{@boardPlayer[x]} |"
-            end
-        end
-        (3..5).each do |x|
-            if @boardPlayer[x].nil?
-                line2+="| #{x+1} |"
-            else
-                line2+="| #{@boardPlayer[x]} |"
-            end
-        end
-        (6..8).each do |x|
-            if @boardPlayer[x].nil?
-                line3+="| #{x+1} |"
-            else
-                line3+="| #{@boardPlayer[x]} |"
-            end
-        end
-        puts lineblock
-        puts line1
-        puts linebreak
-        puts line2
-        puts linebreak
-        puts line3
-        puts lineblock
-        
-    end
-
-
-    def Win
-    end
-
-    def Loose
-    end
-end
-
-class Player
-    attr_reader :number, :name,:symbol
-
-    def initialize(number, name=nil)
-        @number = number
-        puts "Hello new Player. What's your Name?"
-        @name = gets.chomp
-
-        if number == 1
-            @symbol = "X"
-            puts "Your symbol is X"
+  
+    def player_move
+      moves_error = true
+      while moves_error
+        puts 'Select a move from the available moves: '
+        puts @board.availables
+        num = gets.chomp.to_i
+        num -= 1
+        if num >= 0 && num <= 8
+          num_ok = @board.available?(num)
+          if num_ok
+            moves_error = false
+            @board.moves[num] = @player.symbol
+            puts "#{@player.name} has played the move at #{num + 1}"
+          else
+            errors('invalid_num')
+          end
         else
-            @symbol = "O"
-            puts "Your symbol is O"
+          errors('invalid_num')
+        end
+  
+      end
+    end
+  
+    def turn
+      @player = if @player.number == @player1.number
+                  @player2
+                else
+                  @player1
+                end
+    end
+  
+    def game_end
+      if @playing && @board.full?
+        @playing = false
+        @board.display
+        puts @board.draw_display
+      end
+      play_again unless @playing
+    end
+  
+    def play_again
+      puts 'Play Again? Y for Yes or N for No?'
+      not_answered = true
+      while not_answered
+        answ = gets.chomp.downcase
+        if answ.to_s == 'y'
+          @board.reset
+          @playing = true
+          not_answered = false
+          puts "Great! Let's Play Again"
+          play
+        elsif answ.to_s == 'n'
+          puts @board.start_display(@player1, @player2)
+          puts 'Thank you for playing! See you next time! :-)'
+          puts
+          not_answered = false
+        else
+          puts 'Please type Y or N'
+  
+        end
+      end
+    end
+  
+    def a_win?
+      wins = []
+      wins << @board.moves[0].to_s + @board.moves[1].to_s + @board.moves[2].to_s
+      wins << @board.moves[3].to_s + @board.moves[4].to_s + @board.moves[5].to_s
+      wins << @board.moves[6].to_s + @board.moves[7].to_s + @board.moves[8].to_s
+      wins << @board.moves[0].to_s + @board.moves[3].to_s + @board.moves[6].to_s
+      wins << @board.moves[1].to_s + @board.moves[4].to_s + @board.moves[7].to_s
+      wins << @board.moves[2].to_s + @board.moves[5].to_s + @board.moves[8].to_s
+      wins << @board.moves[0].to_s + @board.moves[4].to_s + @board.moves[8].to_s
+      wins << @board.moves[2].to_s + @board.moves[4].to_s + @board.moves[6].to_s
+  
+      player1_win = 'XXX'
+      player2_win = 'OOO'
+      wins.each do |x|
+        return true if x == player1_win || x == player2_win
+      end
+      false
+    end
+  
+    def errors(code)
+      errors = {
+        invalid_num: "Sorry. Your move is not available. Please try again \n"
+      }
+  
+      if errors[code.to_sym]
+        puts errors[code.to_sym]
+      else
+        puts 'Oops! error code not found!'
+      end
+    end
+end
+  
+
+
+
+
+def tic_tac_toe
+    puts "Welcome to TIC TAC Toe"
+    puts "Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. \nThe player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. \n"
+    puts
+    puts "Hello Player 1. What's your Name?"
+    player1_name = gets.chomp
+    puts
+    puts "Choose your Symbol: X or O"
+    symbole_not=true
+    
+    while symbole_not
+        player1_symbol = gets.chomp.to_s.upcase
+        puts player1_symbol
+        if player1_symbol == "X"
+            player2_symbol = "O"
+            symbole_not=false
+        elsif player1_symbol == "O"
+            player2_symbol = "X"
+            symbole_not=false
+        else
+            puts "Please enter X or O"
         end
     end
+
+    puts "Welcome #{player1_name} Your symbol is #{player1_symbol}"
+    puts
+    puts "Hello Player 2. What's your Name?"
+    player2_name = gets.chomp
+    puts "Welcome #{player2_name} Your symbol is #{player2_symbol} \n"
+
+    player1 = Player.new(1, player1_name,player1_symbol)
+    player2 = Player.new(2, player2_name,player2_symbol)
+    game = Game.new(player1,player2)
+    game.play
 end
 
 
-game = Game.new()
-
-
+tic_tac_toe
 
