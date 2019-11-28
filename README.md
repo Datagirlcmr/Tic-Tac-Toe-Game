@@ -1,64 +1,68 @@
-# Object Oriented Programming 
-Rebuilding the TIC TAC Toe Game
-
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
-[![Contributors][contributors-shield]][contributors-url]
-[![Forks][forks-shield]][forks-url]
-[![Stargazers][stars-shield]][stars-url]
-[![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
-
+# The TIC TAC Toe Game (Object Oriented Programming) 
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://www.microverse.org/">
-    <img src="doc/microverse.png" alt="Logo" width="80" height="80">
-  </a>
+    <img src="./docs/tictac.jpeg" alt="Logo" width="80" height="80">
+    </p>
 
-  <h3 align="center"> Tic Tac Toe Implementation</h3>
+# What is Tic Tac Toe
+  Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid.
+  The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
+
+# Getting Started
+1.First off, clone the game:
+
+   git clone https://github.com/Datagirlcmr/Object-Oriented-Programming
+
+2.Open the terminal from where the folder resides / type in the terminal, the following:
+
+   cd Object-Oriented-Programming
+   
+3.Inside the bin/main.rb file, you'll find the Game class, which handles user interactions; inside lib/logic.rb, you'll find Tic Tac Toe Logic, classes which implements all logic of the game.
+
+4.To run the game type:
+
+   bin/main
+
+On your command prompt, you'll initialize the game.
+
+
+# Game Rules
+  1. When the game starts, two players are prompted to provide their names. 
   <p align="center">
-    Tic Tac Toe : What we did
-    <br />
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/tree/milestone_1"><strong>Explore the docs �</strong></a>
-    <br />
-    <br />
-    <a href="https://www.theodinproject.com/courses/ruby-programming/lessons/oop">Project Assigment</a>
-    �
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues">Report Bug</a>
-    �
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues"> Feature Request</a>
-  </p>
-</p>
+    <img src="./docs/tittac.jpeg" alt="Logo" width="80" height="80">
+    </p>
+  
+  2.The first player is further prompted to choose his/her preferred symbol of play; X's or O's 
+    By default, the second player gets the other symbol not chosen by the first player
+  
+  3. The board is then displayed as shown below
 
-# Project-TIC TAC TOE
-Rebuild the TIC TAC TOE Game
-
-# Validations
-
-Rubocop: 
-
-# Features
-
-* Milestone 1 : Setting up and making main.rb executable
-
-# Built With
-
-* `ruby` v2.5.5+
-* RVM
-* `vscode` with _Ruby_ and _Rubocop_ extensions
-* Linux
-
+   <p align="center">
+    <img src="./docs/display.png" alt="Logo" width="80" height="80">
+    </p>
+    
+   4.The first player chooses between positions [1, 2, 3, 4, 5, 6 ,7 ,8 ,9]
+   <p align="center">
+    <img src="./docs/display.png" alt="Logo" width="80" height="80">
+    </p>
+    
+   5.The second player also chooses any position not chosen by the first player. If he choses an already chosen               position, he will be prompted to choose again, as it is an invalid move
+   
+   6. The first player to get his symbols aligned in a horizontal, vertical or diagonal row wins the game
+   
+   7. A draw occurs when all the positions on the board have been filled up, yet no player has been able to win.
+   
+   8. The Game ends when there is a win or a draw
+   <p align="center">
+    <img src="./docs/win.png" alt="Logo" width="80" height="80">
+    </p>
+   
+   9. You can always choose to play again or quit the game.
+   
+  
 # Authors
 
 * [Selma Ndi](https://github.com/Datagirlcmr)
@@ -78,15 +82,3 @@ Rubocop:
 
 
 
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
-[contributors-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Datagirlcmr/Object-Oriented-Programming
-[forks-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/network/members
-[stars-shield]: https://img.shields.io/github/stars/Datagirlcmr/Object-Oriented-Programming
-[stars-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
-[issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
-[license-shield]: https://img.shields.io/github/license/Datagirlcmr/Object-Oriented-Programming
-[license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/develop/LICENSE
