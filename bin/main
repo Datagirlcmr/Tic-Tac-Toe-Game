@@ -35,16 +35,8 @@ class Game
                     errors("invalid_num")
                 end
             end
-            
-            if is_a_win?
-                puts @board.display
-                puts @board.win_display(player) 
-                @playing = false
-                return
-            end
-
-            player= turn(player)
-            
+             game_end(player)
+             player= turn(player)   
         end   
     end
 
@@ -55,6 +47,23 @@ class Game
             player = @player1
         end
         player
+    end
+
+    def game_end(player)
+        finish = false
+        if is_a_win?
+            puts @board.display
+            puts @board.win_display(player) 
+            @playing = false
+            return
+        elsif !@board.free_moves
+            @playing = false
+        else
+            puts "Its A Draw....."
+            puts ""
+            puts "Game has Ended"
+            finish = true
+        end
     end
 
     def is_a_win?
@@ -110,5 +119,5 @@ puts "Welcome #{player2_name} Your symbol is O"
 game = Game.new(player1_name,player2_name)
 game.play
 # check = Board.new
-# p check.availables
+# p check.free_moves
 

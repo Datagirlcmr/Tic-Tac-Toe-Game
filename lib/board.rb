@@ -6,7 +6,7 @@ class Board
     @moves = [nil, nil, nil, nil, nil, nil, nil, nil, nil]
   end
 
-  def available?(index)    
+  def available?(index)
     return true if @moves[index].nil?
 
     false
@@ -18,6 +18,11 @@ class Board
       r += "#{i + 1} - " if @moves[i].nil?
     end
     r
+  end
+
+  def free_moves
+    return true if @moves.select(&:nil?)
+    false
   end
 
   def display
