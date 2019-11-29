@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative './../bin/game.rb'
 require_relative './../lib/board.rb'
 require_relative './../lib/player.rb'
