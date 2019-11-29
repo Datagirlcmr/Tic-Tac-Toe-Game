@@ -1,4 +1,4 @@
-require './lib/board.rb'
+require_relative './../lib/board.rb'
 
 RSpec.describe Board do
   describe '#available?' do
