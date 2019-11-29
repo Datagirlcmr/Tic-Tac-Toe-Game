@@ -70,7 +70,6 @@ The game will be initialized. Enjoy!.
 
 <!--# License
 
-<!--This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
@@ -78,6 +77,15 @@ The game will be initialized. Enjoy!.
 * [The Odin Project](https://www.theodinproject.com/)
 * [Readme header](https://github.com/collinsugwu/Microverse201-Enumerable-Methods)
 
-
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/othneildrew/Best-README-Template.svg?style=flat-square
+[contributors-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Datagirlcmr/Object-Oriented-Programming
+[forks-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/network/members
+[stars-shield]: https://img.shields.io/github/stars/Datagirlcmr/Object-Oriented-Programming
+[stars-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
+[issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
 
 
