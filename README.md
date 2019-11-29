@@ -34,7 +34,7 @@ On your command prompt, you'll initialize the game.
 # Game Rules
 1. When the game starts, two players are prompted to provide their names. 
   <p align="center">
-    <img src="./docs/tittac.jpeg" alt="display" >
+    <img src="./docs/tictac.jpeg" alt="display" >
     </p>
   
 2. The first player is further prompted to choose his/her preferred symbol of play; X's or O's 
