@@ -1,64 +1,67 @@
 # Object Oriented Programming 
-Rebuilding the TIC TAC Toe Game
+Building the TIC TAC Toe Game
 
-
-<!-- PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
-[![MIT License][license-shield]][license-url]
-
 
 
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://www.microverse.org/">
-    <img src="doc/microverse.png" alt="Logo" width="80" height="80">
-  </a>
+    <img src="./docs/tictac.jpeg" alt="Logo">
+    </p>
 
-  <h3 align="center"> Tic Tac Toe Implementation</h3>
+# What is Tic Tac Toe
+  Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid.
+  The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner.
 
-  <p align="center">
-    Tic Tac Toe : What we did
-    <br />
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/tree/milestone_1"><strong>Explore the docs �</strong></a>
-    <br />
-    <br />
-    <a href="https://www.theodinproject.com/courses/ruby-programming/lessons/oop">Project Assigment</a>
-    �
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues">Report Bug</a>
-    �
-    <a href="https://github.com/Datagirlcmr/Object-Oriented-Programming/issues"> Feature Request</a>
-  </p>
-</p>
 
-# Project-TIC TAC TOE
-Rebuild the TIC TAC TOE Game
+# Getting Started
+To test the game, You have 2 options. 
+### Test Online
+To test the game online, click on this [demo link](https://tic-tac-toe.genzaraki.repl.run).
+### Test on your local machine
+1. First off all, clone the repo on your local machine:
 
-# Validations
+        git clone https://github.com/Datagirlcmr/Object-Oriented-Programming
 
-Rubocop: 
+2. Open your terminal and go to the project root directory:
 
-# Features
+       cd Object-Oriented-Programming
+   
+4. To run the game type:
 
-* Milestone 1 : Setting up and making main.rb executable
+       bin/main
 
-# Built With
+The game will be initialized. Enjoy!.
 
-* `ruby` v2.5.5+
-* RVM
-* `vscode` with _Ruby_ and _Rubocop_ extensions
-* Linux
 
+# Game Rules
+1. When the game starts, two players are prompted to provide their names.   
+2. The players are prompted to choose the symbol of play; X or O 
+    By default, the second player gets the other symbol not chosen by the first player
+  
+3. The board is then displayed as shown below
+
+   <p align="center">
+    <img src="./docs/position.jpeg" alt="position">
+    </p>
+    
+4. The player chooses between the available positions from 1 to 9.
+    
+5. A position can not be chosen twice
+   
+6. The first player to get his symbols aligned in a horizontal, vertical or diagonal row wins the game
+
+7. A draw occurs when all the positions on the board have been filled up, yet no player has been able to win.
+   
+8. The Game ends when there is a win or a draw
+ 
+9. You can always choose to play again or quit the game.
+   
+  
 # Authors
 
 * [Selma Ndi](https://github.com/Datagirlcmr)
@@ -67,16 +70,12 @@ Rubocop:
 
 <!--# License
 
-<!--This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details 
 
 <!-- ACKNOWLEDGEMENTS -->
 ## Acknowledgements
 * [Microverse](https://www.microverse.org/)
 * [The Odin Project](https://www.theodinproject.com/)
 * [Readme header](https://github.com/collinsugwu/Microverse201-Enumerable-Methods)
-
-
-
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
@@ -88,5 +87,5 @@ Rubocop:
 [stars-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/stargazers
 [issues-shield]: https://img.shields.io/github/issues/Datagirlcmr/Object-Oriented-Programming
 [issues-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/issues
-[license-shield]: https://img.shields.io/github/license/Datagirlcmr/Object-Oriented-Programming
-[license-url]: https://github.com/Datagirlcmr/Object-Oriented-Programming/blob/develop/LICENSE
+
+
