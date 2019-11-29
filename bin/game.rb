@@ -70,12 +70,19 @@ class Game
     end
   
     def game_end
-      if @playing && @board.full?
+      if draw?
         @playing = false
         @board.display
         puts @board.draw_display
       end
       play_again unless @playing
+    end
+
+    def draw?
+      if @playing && @board.full?
+        return true
+      end
+      false
     end
   
     def play_again
