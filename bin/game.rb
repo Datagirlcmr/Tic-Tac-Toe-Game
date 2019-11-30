@@ -1,5 +1,5 @@
 class Game
-    attr_reader :board
+    attr_reader :board, :player1, :player2
     attr_writer :board, :player
     def initialize(player1, player2)
       @player1 = player1
