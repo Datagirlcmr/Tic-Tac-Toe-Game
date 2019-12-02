@@ -44,7 +44,7 @@ class Game
           @board.moves[num] = @player.symbol
           puts "#{@player.name} has played the move at #{num + 1}"
         else
-          errors('invalid_num')
+         puts errors('invalid_num')
         end
   
       end
@@ -133,9 +133,10 @@ class Game
       }
   
       if errors[code.to_sym]
-        puts errors[code.to_sym]
+        return errors[code.to_sym]
       else
-        puts 'Oops! error code not found!'
+        return 'Oops! error code not found!'
+
       end
     end
 end

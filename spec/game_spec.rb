@@ -64,4 +64,21 @@ RSpec.describe Game do
       expect(game.draw?).to eql(true)
     end
   end
+
+  describe '#errors' do
+    let(:player1) { Player.new(1, 'Amadou', 'X') }
+    let(:player2) { Player.new(1, 'Selly', 'O') }
+    let(:game) { Game.new(player1, player2) }
+
+    it 'returns an error code not found message' do
+      expect(game.errors('x')).to eql('Oops! error code not found!')
+    end
+
+    it 'returns an error message' do
+      expect(game.errors('invalid_num')).to eql("Sorry. Your move is not available. Please try again \n")
+    end
+  end
+
+  # describe '#game_end' do
+  # end
 end
