@@ -65,7 +65,7 @@ RSpec.describe GameLogic do
       expect(logic.draw?(playing, board)).to eql(true)
     end
     it 'returns false if the game is not a draw' do
-      board.moves = [1,2,3,"X","O","X",7,8,9]
+      board.moves = [1, 2, 3, 'X', 'O', 'X', 7, 8, 9]
       playing = true
       expect(logic.draw?(playing, board)).to eql(false)
     end
