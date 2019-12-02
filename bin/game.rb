@@ -1,14 +1,54 @@
+require_relative './../lib/logic.rb'
 class Game
     attr_reader :board, :player1, :player2
     attr_writer :board, :player
-    def initialize(player1, player2)
+    
+    def initialize
+      puts "Welcome to TIC TAC Toe"
+      puts "Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. \nThe player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. \n"
+      puts
+      puts "Hello Player 1. What's your Name?"
+      player1_name = gets.chomp
+      puts
+      puts "Choose your Symbol: X or O"
+      symbole_not=true
+      
+      while symbole_not
+          player1_symbol = gets.chomp.to_s.upcase
+          puts player1_symbol
+          if player1_symbol == "X"
+              player2_symbol = "O"
+              symbole_not=false
+          elsif player1_symbol == "O"
+              player2_symbol = "X"
+              symbole_not=false
+          else
+              puts "Please enter X or O"
+          end
+      end
+  
+      puts "Welcome #{player1_name} Your symbol is #{player1_symbol}"
+      puts
+      puts "Hello Player 2. What's your Name?"
+      player2_name = gets.chomp
+      puts "Welcome #{player2_name} Your symbol is #{player2_symbol} \n"
+  
+      player1 = Player.new(1, player1_name,player1_symbol)
+      player2 = Player.new(2, player2_name,player2_symbol)
+      # game = Game.new(player1,player2)
+      # game.play
+    end
+
+    def build(player1, player2)
       @player1 = player1
       @player2 = player2
       @playing = true
       @player = nil
       @board = Board.new
+      @logic = GameLogic.new
+      
     end
-  
+    
     def play
       puts @board.start_display(@player1, @player2)
       @player = @player1
@@ -19,7 +59,7 @@ class Game
   
         player_move
   
-        if a_win?
+        if @logic.a_win?(@board)
           @player.wins += 1
           puts @board.display
           puts @board.win_display(@player, @player1, @player2)
@@ -28,7 +68,7 @@ class Game
         end
   
         game_end
-        turn
+        @player = @logic.turn(@player,@player1,@player2)
       end
     end
   
@@ -39,7 +79,7 @@ class Game
         puts @board.availables
         num = gets.chomp.to_i
         num -= 1
-        if move_ok?(num)
+        if @logic.move_ok?(num,@board)
           moves_error = false
           @board.moves[num] = @player.symbol
           puts "#{@player.name} has played the move at #{num + 1}"
@@ -50,27 +90,10 @@ class Game
       end
     end
 
-    def move_ok?(num)
-      if num >= 0 && num <= 8
-        num_ok = @board.available?(num)
-        if num_ok
-          return true
-        end        
-      end
-      return false
-    end
-  
-    def turn
-      
-      @player = if @player.number == @player1.number
-                  @player2
-                else
-                  @player1
-                end
-    end
+    
   
     def game_end
-      if draw?
+      if @logic.draw?(@playing,@board)
         @playing = false
         @board.display
         puts @board.draw_display
@@ -78,12 +101,7 @@ class Game
       play_again unless @playing
     end
 
-    def draw?
-      if @playing && @board.full?
-        return true
-      end
-      false
-    end
+    
   
     def play_again
       puts 'Play Again? Y for Yes or N for No?'
@@ -108,24 +126,7 @@ class Game
       end
     end
   
-    def a_win?
-      wins = []
-      wins << @board.moves[0].to_s + @board.moves[1].to_s + @board.moves[2].to_s
-      wins << @board.moves[3].to_s + @board.moves[4].to_s + @board.moves[5].to_s
-      wins << @board.moves[6].to_s + @board.moves[7].to_s + @board.moves[8].to_s
-      wins << @board.moves[0].to_s + @board.moves[3].to_s + @board.moves[6].to_s
-      wins << @board.moves[1].to_s + @board.moves[4].to_s + @board.moves[7].to_s
-      wins << @board.moves[2].to_s + @board.moves[5].to_s + @board.moves[8].to_s
-      wins << @board.moves[0].to_s + @board.moves[4].to_s + @board.moves[8].to_s
-      wins << @board.moves[2].to_s + @board.moves[4].to_s + @board.moves[6].to_s
-  
-      player1_win = 'XXX'
-      player2_win = 'OOO'
-      wins.each do |x|
-        return true if x == player1_win || x == player2_win
-      end
-      false
-    end
+    
   
     def errors(code)
       errors = {

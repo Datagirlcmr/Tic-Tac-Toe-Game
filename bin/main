@@ -1,50 +1,153 @@
 #!/usr/bin/env ruby
 
-require_relative  "./../bin/game.rb"
 require_relative  "./../lib/player.rb"
 require_relative  "./../lib/board.rb"
+require_relative './../lib/logic.rb'
 
-
-
-
-
-
-def tic_tac_toe
-    puts "Welcome to TIC TAC Toe"
-    puts "Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. \nThe player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. \n"
-    puts
-    puts "Hello Player 1. What's your Name?"
-    player1_name = gets.chomp
-    puts
-    puts "Choose your Symbol: X or O"
-    symbole_not=true
+class Game
+    attr_reader :board, :player1, :player2
+    attr_writer :board, :player
     
-    while symbole_not
-        player1_symbol = gets.chomp.to_s.upcase
-        puts player1_symbol
-        if player1_symbol == "X"
-            player2_symbol = "O"
-            symbole_not=false
-        elsif player1_symbol == "O"
-            player2_symbol = "X"
-            symbole_not=false
-        else
-            puts "Please enter X or O"
-        end
+    def initialize
+      puts "Welcome to TIC TAC Toe"
+      puts "Tic-tac-toe is a game for two players, X and O, who take turns marking the spaces in a 3×3 grid. \nThe player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row is the winner. \n"
+      puts
+      puts "Hello Player 1. What's your Name?"
+      player1_name = gets.chomp
+      puts
+      puts "Choose your Symbol: X or O"
+      symbole_not=true
+      
+      while symbole_not
+          player1_symbol = gets.chomp.to_s.upcase
+          puts player1_symbol
+          if player1_symbol == "X"
+              player2_symbol = "O"
+              symbole_not=false
+          elsif player1_symbol == "O"
+              player2_symbol = "X"
+              symbole_not=false
+          else
+              puts "Please enter X or O"
+          end
+      end
+  
+      puts "Welcome #{player1_name} Your symbol is #{player1_symbol}"
+      puts
+      puts "Hello Player 2. What's your Name?"
+      player2_name = gets.chomp
+      puts "Welcome #{player2_name} Your symbol is #{player2_symbol} \n"
+  
+      @player1 = Player.new(1, player1_name,player1_symbol)
+      @player2 = Player.new(2, player2_name,player2_symbol)
+     
     end
 
-    puts "Welcome #{player1_name} Your symbol is #{player1_symbol}"
-    puts
-    puts "Hello Player 2. What's your Name?"
-    player2_name = gets.chomp
-    puts "Welcome #{player2_name} Your symbol is #{player2_symbol} \n"
+    def build
+     
+      @playing = true
+      @player = nil
+      @board = Board.new
+      @logic = GameLogic.new
+      
+    end
+    
+    def play
+      puts @board.start_display(@player1, @player2)
+      @player = @player1
+      while @playing
+        puts @board.display
+        puts "#{@player.name} It is your turn to play"
+        puts
+  
+        player_move
+  
+        if @logic.a_win?(@board)
+          @player.wins += 1
+          puts @board.display
+          puts @board.win_display(@player, @player1, @player2)
+          @playing = false
+  
+        end
+  
+        game_end
+        @player = @logic.turn(@player,@player1,@player2)
+      end
+    end
+  
+    def player_move
+      moves_error = true
+      while moves_error
+        puts 'Select a move from the available moves: '
+        puts @board.availables
+        num = gets.chomp.to_i
+        num -= 1
+        if @logic.move_ok?(num,@board)
+          moves_error = false
+          @board.moves[num] = @player.symbol
+          puts "#{@player.name} has played the move at #{num + 1}"
+        else
+         puts errors('invalid_num')
+        end
+  
+      end
+    end
 
-    player1 = Player.new(1, player1_name,player1_symbol)
-    player2 = Player.new(2, player2_name,player2_symbol)
-    game = Game.new(player1,player2)
-    game.play
+    
+  
+    def game_end
+      if @logic.draw?(@playing,@board)
+        @playing = false
+        @board.display
+        puts @board.draw_display
+      end
+      play_again unless @playing
+    end
+
+    
+  
+    def play_again
+      puts 'Play Again? Y for Yes or N for No?'
+      not_answered = true
+      while not_answered
+        answ = gets.chomp.downcase
+        if answ.to_s == 'y'
+          @board.reset
+          @playing = true
+          not_answered = false
+          puts "Great! Let's Play Again"
+          play
+        elsif answ.to_s == 'n'
+          puts @board.start_display(@player1, @player2)
+          puts 'Thank you for playing! See you next time! :-)'
+          puts
+          not_answered = false
+        else
+          puts 'Please type Y or N'
+  
+        end
+      end
+    end
+  
+    
+  
+    def errors(code)
+      errors = {
+        invalid_num: "Sorry. Your move is not available. Please try again \n"
+      }
+  
+      if errors[code.to_sym]
+        return errors[code.to_sym]
+      else
+        return 'Oops! error code not found!'
+
+      end
+    end
 end
 
 
-tic_tac_toe
+
+game = Game.new
+game.build
+game.play
 
