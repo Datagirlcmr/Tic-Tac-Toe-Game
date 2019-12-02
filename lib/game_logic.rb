@@ -2,12 +2,11 @@
 
 require_relative './../lib/board.rb'
 class GameLogic
-
   def turn(player, player1, player2)
-     if player.number == player1.number
-        player2
-     else
-        player1
+    if player.number == player1.number
+      player2
+    else
+      player1
     end
   end
 
@@ -20,7 +19,6 @@ class GameLogic
   end
 
   def draw?(playing, board)
-    
     return true if playing && board.full?
 
     false
@@ -43,5 +41,5 @@ class GameLogic
       return true if x == player1_win || x == player2_win
     end
     false
-    end
+  end
 end

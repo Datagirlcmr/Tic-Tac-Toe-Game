@@ -34,6 +34,11 @@ RSpec.describe Board do
       board.moves = [1, 2, 3, 'X', 'O', 'X', 'O', 'x', 'O']
       expect(board.availables).to eq('1 - 2 - 3 - ')
     end
+
+    it 'return empty if there is no moves availables' do
+      board.moves = ['x','O','O' 'X', 'O', 'X', 'O', 'x', 'O']
+      expect(board.availables).to eq('')
+    end
   end
 
   describe '#full?' do
