@@ -36,7 +36,7 @@ RSpec.describe Board do
     end
 
     it 'return empty if there is no moves availables' do
-      board.moves = ['x', 'O', 'O', 'X', 'O', 'X', 'O', 'x', 'O']
+      board.moves = %w[x O O X O X O x O]
       expect(board.availables).to eq('')
     end
   end
