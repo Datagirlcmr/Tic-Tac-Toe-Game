@@ -1,4 +1,4 @@
-# Object Oriented Programming 
+# TIC TAC TOE GAME
 Building the TIC TAC Toe Game
 
 [![Contributors][contributors-shield]][contributors-url]
